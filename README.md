@@ -61,6 +61,24 @@ username=kim&age=20
 
 
 
+**주로 다음 3가지 방법을 사용한다**
+
+- GET - 쿼리 파라미터
+  - /url?username=Kim&age=20
+  - 메시지 바디 없이, URL의 쿼리 파라미터에 데이터를 포함해서 전달
+  - 예)검색,필터,페이징등에서 많이 사용
+- POST - HTML form
+  - Content-type:application/x-www-form-urlencoded
+  - 메시지에 바디에 쿼리 파라미터 형식으로 전달
+  - 예)회원가입, 상품 주문, HTML Form을 사용
+- HTTP message body에 데이터를 직접 담아서 요청
+  - HTTP API에 주로 사용, JSON,XML,TEXT
+  - POST, PUT, PATCH
+
+
+
+
+
 
 
 
