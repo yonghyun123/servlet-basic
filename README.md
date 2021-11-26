@@ -99,3 +99,11 @@ HTTP API에서 주로 사용하는 JSON형식으로 데이터를 전달해보자
 - Content-type: application/json
 - Message body: {"username": "hello", "age":20}
 - 결과: messageBody = {"username": "hello", "age":20}
+
+
+
+### HttpServletResponse - 기본 사용법
+
+- Content-type
+- 쿠키, redirect
+
