@@ -85,3 +85,17 @@ username=kim&age=20
 >
 > "POST HTML Form 형식"으로 데이터를 전달하면 HTTP 메시지 바디에 해당하는 데이터를 포함해서 보내기 때문에 바디에 포함된 데이터가 어떤 형식인지 반드시 content-type을 지정해야 한다.
 
+
+
+### HTTP 요청 데이터 - API 메시지 바디 - JSON
+
+HTTP API에서 주로 사용하는 JSON형식으로 데이터를 전달해보자.
+
+
+
+**"JSON 형식 전송"**
+
+- POST 
+- Content-type: application/json
+- Message body: {"username": "hello", "age":20}
+- 결과: messageBody = {"username": "hello", "age":20}
