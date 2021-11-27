@@ -107,3 +107,10 @@ HTTP API에서 주로 사용하는 JSON형식으로 데이터를 전달해보자
 - Content-type
 - 쿠키, redirect
 
+### HTTP 응답 데이터 - 단순 텍스, HTML
+
+- 단순 텍스트 응답
+- HTML 응답
+
+
+
