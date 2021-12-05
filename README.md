@@ -164,6 +164,49 @@ MVC 패턴은 지금까지 학습한 것 처럼 하나의 서블릿이나, JSP�
 
 
 
+### MVC 패턴 한계
+
+MVC 패턴을 적용한 덕분에 컨트롤러의 역할과 뷰를 렌더링 하는 역하을 명확하게 구분할 수 있다. 특히 뷰는 화면을 그리는 역활에 축실한 덕분에 코드는 직관적이다. 단순하게 모델에서 필요한 데이터를 꺼내고 화면을 만들면 된다. 하지만 컨트롤러는 중복이 많고 필요하지 않는 코드도 보인다.
+
+
+
+**MVC 컨트롤러 단점**
+
+
+
+포워드 중복
+
+VIew로 이동하는 코드가 항상 중복 호출되어야 한다. 물론 이 부분을 메서드로 공통화해도 되지만, 해당 메서드도 항상 직접 호출해야 한다.
+
+```java
+
+String viewPath = "/WEB-INF/views/members.jsp";
+        RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
+        dispatcher.forward(request, response);
+```
+
+"ViewPath" 중복
+
+
+
+**정리하면 공통 처리가 어렵다는 문제가 있다**
+
+이 문제를 해결하려면 컨트롤러 호출 전에 먼저 공통 기능을 처리해야한다.
+
+소위 "수문장 역할"을 하는 기능이 필요하다. **프론트 컨트롤러 패턴(front Controller pattern)**을 도입하면 이런 문제를 깔끔하게 해결할 수 있다.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
