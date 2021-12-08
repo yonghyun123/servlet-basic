@@ -197,6 +197,93 @@ String viewPath = "/WEB-INF/views/members.jsp";
 
 
 
+### MVC 프레임워크 만들기
+
+
+
+**FrontController 패턴 특징**
+
+- 프론트 컨트롤러 서블릿 하나로 클라이언트 요청을 받음
+- 프론트 컨트롤러가 요청에 맞는 컨트롤러를 찾아서 호출
+- 공통 처리 가능
+- 프론트 컨트롤러를 제외한 나머지 컨트롤러는 서블릿 사용하지 않아도 됨.
+
+
+
+**스프링 웹 MVC의 프론트 컨트롤러**
+
+스프렝 웹 MVC의 핵심은 바로 frontController
+
+스프렝 웹 MVC의 **DispatcherServlet**이 FrontController 패턴으로 구현되어 있음.
+
+
+
+```java
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public interface ControllerV1 {
+
+    void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+}
+```
+
+
+
+서블릿과 비슷한 모양의 컨트롤러 인터페이스 도입. 프론트 컨트롤러는 이 인터페이스를 호출해서 구현과 관계없이 로직의 일관성을 가져갈 수 있다.
+
+
+
+FrontControllerServletV1.java
+
+```java
+package hello.servlet.web.frontcontoller.v1;
+
+import hello.servlet.web.frontcontoller.v1.controller.MemberFormControllerV1;
+import hello.servlet.web.frontcontoller.v1.controller.MemberListControllerV1;
+import hello.servlet.web.frontcontoller.v1.controller.MemberSaveControllerV1;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+@WebServlet(name = "frontControllerServletV1", urlPatterns = "/front-controller/v1/*")
+public class FrontControllerServletV1 extends HttpServlet {
+
+    private final Map<String, ControllerV1> controllerMap = new HashMap<>();
+
+    public FrontControllerServletV1() {
+        controllerMap.put("/front-controller/v1/members/new-form", new MemberFormControllerV1());
+        controllerMap.put("/front-controller/v1/members/save", new MemberSaveControllerV1());
+        controllerMap.put("/front-controller/v1/members", new MemberListControllerV1());
+    }
+
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("request = " + request);
+
+        String requestURI = request.getRequestURI();
+
+        ControllerV1 controller = controllerMap.get(requestURI);
+        if(controller == null){
+//            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            return;
+        }
+
+        controller.process(request,response);
+
+    }
+}
+
+```
+
 
 
 
