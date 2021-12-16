@@ -405,6 +405,16 @@ public class FrontControllerServletV2 extends HttpServlet {
 
 
 
+### 서블릿 종속성 제거
+
+컨트롤러 입장에서는 HttpSevletRequest, HttpServletResponse가 꼭 필요할까?
+
+요청 파라미터 정보는 자바의  Map으로 대신 넘기도록 하면 지금 구조에서는 컨트롤러가 서블릿 기술을 몰라도 동작가능하다
+
+그리고 request객체를 Model로 사용하는 대신에 별도의 Model객체를 만들어서 반환하면 된다.
+
+
+
 
 
 
