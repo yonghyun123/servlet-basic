@@ -430,6 +430,23 @@ MyView view = viewResolver(viewName)
 
 ![스크린샷 2021-12-20 오후 11 48 05](https://user-images.githubusercontent.com/15208005/146785807-95f38d11-097d-4124-9d38-3688b92cd2f7.png)
 
+# Spring MVC 구조
+
+- FrontController -> DispatcherServlet
+- HandlerMappingMap -> HandlerMapping
+- MyHandlerAdapter -> HandlerAdapter
+- ModelView -> ModelAndView
+- viewResolver -> ViewResolver
+
+### DispatcherServlet 구조 살피기
+스프링 MVC도 프론트 컨트롤러 패턴으로 구현되어 있다.
+스프링 MVC의 프론트 컨트롤러가 DispatcherServlet이다.
+Springboot는 DispatcherServlet을 서블릿으로 자동으로 등록하면서 **모든경로** (urlPatterns="/")에 대해서 매핑한다.
+> 더 자세한 경로가 우선순위가 높다.
+
+![스크린샷 2021-12-21 오후 11 10 36](https://user-images.githubusercontent.com/15208005/146943756-5d8b4de7-fcf2-4290-b93e-8464cb74c2e8.png)
+
+
 
 
 
