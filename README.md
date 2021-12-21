@@ -448,6 +448,39 @@ Springboot는 DispatcherServlet을 서블릿으로 자동으로 등록하면서 
 
 
 
+### 핸들러 매핑과 핸들러 어댑터
+**과거버전 컨트롤러**
+
+```
+public interface Controller{
+	ModelAndView handlerRequest(HttpServletRequest request, HttpServletResponse response) throws Exception;
+}
+```
+
+- HandlerMapping(핸들러 매핑)
+	- 핸들러 매핑에서 이 컨트롤러를 찾을 수 있어야한다.
+	- 예) 스프링 빈의 이름으로 핸들러를 찾을 수 있는 핸들러 매핑이 필요하다.
+
+- HandlerAdapter(핸들러 어댑터)
+	- 핸들러 매핑을 통해서 찾은 핸들러를 실행할 수 있는 핸들러 어댑터가 필요하다.
+	- 예) Controller 인터페이스를 실행할 수 있는 핸들러 어댑터를 찾고 실행해야 한다.
+
+**HandlerMapping**
+> 0 = RequestMappingHandlerMapping : 애노테이션 기반의 컨트롤러인 @RequestMapping에서 사용
+> 
+> 1 = BeanNameUrlHandlerMapping: 스프링 빈의 이름으로 핸들러를 찾는다.
+
+**HandlerAdapter**
+> 0 = RequestMappingHandlerAdapter : 애노테이션 기반의 컨트롤러인 @RequestMapping에서 사용
+> 
+> 1 = HttpRequestHandlerAdapter : HttpRequestHandler 처리
+> 
+> 2 = SimpleControllerHandlerAdapter : Controller 인터페이스 처리
+
+
+
+
+
 
 
 
