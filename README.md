@@ -477,6 +477,19 @@ public interface Controller{
 > 
 > 2 = SimpleControllerHandlerAdapter : Controller 인터페이스 처리
 
+### 뷰 리졸버
+
+1. 핸들러 어댑터 호출
+2. ViewResolver 호출
+ - new-from이라는 뷰 이름으로 viewResolver 호출
+ - BeanNameViewResolver는 new-form이라는 스프링 빈으로 등록된 뷰를 찾는데 없다.
+ - InternalResourceViewResolver호출
+3. InternalResourceViewResolver
+이 뷰 리졸버는 InternalResourceView 반환
+4. 뷰-InternalResourceView
+InternalResourceView는 jsp처럼 포워드를 호출해서 처리할 수 있는 경우에 사용
+5. view.render()
+
 
 
 
