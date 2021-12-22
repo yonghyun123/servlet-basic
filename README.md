@@ -491,6 +491,67 @@ InternalResourceView는 jsp처럼 포워드를 호출해서 처리할 수 있는
 5. view.render()
 
 
+```
+@Controller
+@RequestMapping("/springmvc/v3/members")
+public class SpringMemberControllerV3 {
+    private MemberRepository memberRepository = MemberRepository.getInstance();
+
+//    @RequestMapping(value = "/new-form", method = RequestMethod.GET)
+    @GetMapping("/new-form")
+    public String newForm() {
+        return "new-form";
+    }
+
+//    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @PostMapping("/save")
+    public String save(
+            @RequestParam("username") String username,
+            @RequestParam("age") int age,
+            Model model) {
+
+        Member member = new Member(username, age);
+        memberRepository.save(member);
+
+        model.addAttribute("member", member);
+
+        System.out.println("==========IN SERVICE===========");
+
+        return "save-result";
+    }
+
+//    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
+    public String members(Model model) {
+        List<Member> members = memberRepository.findAll();
+        model.addAttribute("members", members);
+        return "members";
+
+    }
+}
+
+```
+
+
+
+### 실용적인 방법
+ **Model 파라미터**
+ save(), members()를 보면 Model을 파라미터로 받는 것을 확인할 수 있다. 스프링 MVC도 이런 편의 기능을 제공한다.
+ 
+ **ViewName** 직접 반환
+ 뷰의 논리 이름을 반환할 수 있다.
+ 
+ **@RequestParam**사용
+ 스프링은 HTTP 요청 파라미터를 @RequestParam으로  받을 수 있따.
+ @RequestParam("username")은 request.getParameter("username")과 거의 비슷한 코드라 생각하면 된다.
+ 
+ ```
+ @RequestMapping(value="/new-form", method = RequestMethod.GET)
+ 
+ -> @GetMapping("/new-form")
+ ```
+ 
+ 
 
 
 
