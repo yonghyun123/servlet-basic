@@ -43,6 +43,7 @@ public class SpringMemberControllerV3 {
         model.addAttribute("members", members);
         System.out.println("새로운 멤버 추가");
         System.out.println("dddd");
+        System.out.println("dddd");
         return "members";
 
     }
